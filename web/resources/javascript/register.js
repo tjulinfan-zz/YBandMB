@@ -1,0 +1,10 @@
+document.getElementById("registerForm:username").setAttribute("required", "required");
+document.getElementById("registerForm:password").setAttribute("required", "required");
+document.getElementById("registerForm:confirmPassword").setAttribute("required", "required");
+document.getElementById("registerForm:email").setAttribute("required", "required");
+document.getElementById("registerForm:username").setAttribute("placeholder", "Username");
+document.getElementById("registerForm:password").setAttribute("placeholder", "Password");
+document.getElementById("registerForm:confirmPassword").setAttribute("placeholder", "ConfirmPassword");
+document.getElementById("registerForm:email").setAttribute("placeholder", "E-mail");
+document.getElementById("registerForm:phone").setAttribute("placeholder", "Phone Number");
+document.getElementById("registerForm:address").setAttribute("placeholder", "Dorm Number");

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Search Page</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/searchcss.css" />
+    </h:head>
+    <h:body>
+        <div class="container">
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="home.faces">YB&#38;MB</a>
+                        <div class="nav-collapse collapse">
+                            <p class="navbar-text pull-right">
+                                <c:if test="#{loginBean.loggedIn == false}">
+                                    <a href="signin.faces" class="navbar-link">Sign in</a>
+                                    &nbsp;|&nbsp;
+                                    <a href="register.faces" class="navbar-link">Register</a>
+                                </c:if>
+                                <c:if test="#{loginBean.loggedIn == true}">
+                                    <h:outputLink styleClass="navbar-link" value="mystore.faces">
+                                        <h:outputText value="#{loginBean.user.username}" />
+                                    </h:outputLink>
+                                </c:if>
+                            </p>
+                            <ul class="nav">
+                                <li><a href="home.faces"><i class="icon-home icon-white"></i> Home</a></li>
+                                <li class="active"><a href="search.faces">Search</a></li>
+                                <li><a href="sell.faces">Sell</a></li>
+                                <li><a href="about.faces">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-header">
+                <br />
+                <h1> <small>Search Page</small></h1>
+            </div>
+
+            <div class="row-fluid">
+                <h:form id="searchForm" styleClass="form-search span6 offset4">
+                    <h:inputText id="searchinfo" styleClass="input-large search-query" />
+                    <!--<input type="text" class="input-large search-query" />-->
+                    <h:commandButton styleClass="btn" value="Search" />
+                    <!--<button type="submit" class="btn">Search</button>-->
+                    <br />
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="book name" checked="checked" />
+                        book name</label>
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="author" />
+                        author name</label>
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="publisher" />
+                        publisher</label>
+                </h:form>
+            </div>
+
+            <div class="row-fluid">
+                <legend></legend>
+                <div class="span6 offset2">
+                    <c:forEach var="book" items="#{bookBean.bookList}">
+                        <h:form>
+                            <div class="thumbnail">
+                                <table>
+                                    <tr>
+                                        <td width="110px">
+                                            <div>
+                                                <img src="#{book.imgurl}" alt="#{book.title}"/>
+                                                <p></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p  style="font-size: 20px">#{book.title}</p>
+                                            <p> #{book.author} </p>
+                                            <hr/>
+                                            <p style="color: gray">Price: <span style="color: firebrick;font-size: 22px">#{book.price}</span></p>
+                                            <p style="color: gray">Owner: #{userBean.findById(book.userid).username}</p>
+                                            <p style="color: gray">#{book.description}</p>
+                                            <h:commandButton style="background: #5eb95e" styleClass="btn btn-info" value="Buy it!"
+                                                             action="#{sendEmail.sendEmail(loginBean.user.id, book.userid, book.id)}"/>
+                                            <!--<button class="btn btn-info"  style="background: #5eb95e">Buy it!</button>-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </h:form>
+                        <br />
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/javascript/jquery-1.9.1.min.js"></script>
+        <script src="resources/javascript/bootstrap.js"></script>
+    </h:body>
+</html>
+

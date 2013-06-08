@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Home Page</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/homecss.css" />
+    </h:head>
+    <h:body>
+        <div class="container">
+
+            <!-- signin and register-->
+            <div class="row">
+                <h:form rendered="#{loginBean.loggedIn == false}">
+                    <p class="navbar-text pull-right">
+                        <a href="#signIn" role="button" class="navbar-link" data-toggle="modal">Sign In</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.xhtml" class="navbar-link">Register</a>
+                    </p>
+                </h:form>
+                <h:form rendered="#{loginBean.loggedIn == true}">
+                    <p class="navbar-text pull-right">
+                        <a href="mystore.xhtml" class="navbar-link">#{loginBean.user.username}</a>
+                        &nbsp;|&nbsp;
+                        <h:commandLink styleClass="navbar-link" action="#{loginBean.logOut}" value="Log Out"/>
+                        <!--<a href="home.face" class="navbar-link">Log Out</a>-->
+                    </p>
+                </h:form>
+            </div>
+
+            <!-- Modal Sign In -->
+            <div id="signIn" class="modal hide fade" style="width:350px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Please Sign In</h3>
+                </div>
+                <div class="modal-body">
+                    <h:form id="loginForm" styleClass="form-signin">
+                        <div>
+                            <h:message for="password" showSummary="true" showDetail="false" errorClass="error-message" />
+                        </div>
+                        <br />
+                        <h:inputText id="username" styleClass="input-large" />
+                        <h:inputSecret id="password" styleClass="input-large" 
+                                       validator="#{loginBean.validateUser}"/>
+
+                        <h:commandButton styleClass="btn btn-large btn-primary" action="#{loginBean.logIn}" value="Sign In" />
+                    </h:form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <a href="register.faces" class="btn btn-primary">Register &raquo;</a>
+                </div>
+            </div>
+
+            <!-- navbar -->
+            <div class="masthead">
+                <h3 class="muted">YB&nbsp;&#38;&nbsp;MB</h3>
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul class="nav">
+                                <li id="home" class="active"><a href="home.faces">Home</a></li>
+                                <li id="search"><a href="search.faces">Search</a></li>
+                                <li id="sell"><a href="sell.faces">Sell</a></li>             
+                                <li id="about"><a href="about.faces">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- /.navbar -->
+            </div>
+
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+                <h1>Book Market!</h1>
+                <p class="lead">You can sell your used books, or buy secondhand books from here!</p>
+                <a class="btn btn-large btn-success" href="search.faces">Get Started</a>
+            </div>
+
+            <!-- Example row of columns -->
+            <div class="row-fluid">
+                <div class="span4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+                <div class="span4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+                <div class="span4">
+                    <h2 id="a">Heading</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- footer -->
+            <div class="footer">
+                <p>&copy; Group Farmer 2013</p>
+            </div>
+
+        </div>
+        <script src="resources/javascript/jquery-1.9.1.min.js"></script>
+        <script src="resources/javascript/bootstrap.js"></script>
+        <script src="resources/javascript/home.js"></script>
+    </h:body>
+</html>

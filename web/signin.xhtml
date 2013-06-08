@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sign In</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/signincss.css" />
+    </h:head>
+    <h:body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="home.faces">YB&#38;MB</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="home.faces"><i class="icon-home icon-white"></i>Home</a></li>
+                            <li><a href="search.faces">Search</a></li>
+                            <li><a href="sell.faces">Sell</a></li>
+                            <li><a href="about.faces">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Your Account</li>
+                            <li class="active"><a href="#">Sign In</a></li>
+                            <li><a href="register.faces">Register</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+
+                <div class="span9">
+                    <div class="row-fluid">
+                        <fieldset>
+                            <legend>User Information</legend>
+                            <h:form id="loginForm">
+                                <div>
+                                    <h:message for="password" errorClass="error-message" />
+                                </div>
+                                <table class="input">
+                                    <tr>
+                                        <td class="b_name">Username:&nbsp;</td>
+                                        <td class="b_attribute">
+                                            <h:inputText id="username" styleClass="input-large" />
+                                            <!--<input class="input-large" type="text" placeholder="Username" required="required" />-->
+                                        </td>
+                                    </tr>
+                                    <br />
+                                    <tr>
+                                        <td class="b_name">Password:&nbsp;</td>
+                                        <td class="b_attribute">
+                                            <h:inputSecret id="password" styleClass="input-large" 
+                                                           validator="#{loginBean.validateUser}"/>
+                                            <!--<input class="input-large" type="password" placeholder="Password" required="required" />-->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <h:commandButton styleClass="btn btn-large btn-primary" value="Sign In" action="#{loginBean.logIn}"/>
+                                            <!--<button type="submit" class="btn btn-large btn-primary">Submit</button>-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h:form>
+                        </fieldset>
+                    </div><!--/row-->
+                </div><!--/span-->
+            </div>
+
+            <hr />
+
+            <div class="footer">
+                <p>&copy; Group Farmer 2013</p>
+            </div>
+            
+        </div><!--/.fluid-container-->
+        <script src="resources/javascript/signin.js" />
+    </h:body>
+</html>
+
